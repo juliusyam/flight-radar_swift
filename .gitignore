@@ -1,0 +1,4 @@
+# Ignore xcuserdata created by XCode
+.DS_Store
+FlightRadar.xcodeproj/xcuserdata
+FlightRadar.xcodeproj/project.xcworkspace/xcuserdata
