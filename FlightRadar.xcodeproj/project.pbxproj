@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780FDF3D2C3D541500007148 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 780FDF3C2C3D541500007148 /* info.plist */; };
 		781C7A952C32DE4300D2A2FA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C7A942C32DE4300D2A2FA /* LoginView.swift */; };
 		781C7A972C32DE7E00D2A2FA /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C7A962C32DE7E00D2A2FA /* RegistrationView.swift */; };
 		781C7AA52C354C5D00D2A2FA /* Payloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C7AA42C354C5D00D2A2FA /* Payloads.swift */; };
@@ -46,6 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		780FDF3C2C3D541500007148 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
+		780FDF562C3D572300007148 /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Bold.ttf"; sourceTree = "<group>"; };
+		780FDF572C3D572300007148 /* Manrope-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Light.ttf"; sourceTree = "<group>"; };
+		780FDF582C3D572300007148 /* Manrope-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraLight.ttf"; sourceTree = "<group>"; };
+		780FDF592C3D572300007148 /* Manrope-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Regular.ttf"; sourceTree = "<group>"; };
+		780FDF5A2C3D572300007148 /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-SemiBold.ttf"; sourceTree = "<group>"; };
+		780FDF5B2C3D572300007148 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
+		780FDF5C2C3D572300007148 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
 		781C7A942C32DE4300D2A2FA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		781C7A962C32DE7E00D2A2FA /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		781C7AA42C354C5D00D2A2FA /* Payloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payloads.swift; sourceTree = "<group>"; };
@@ -95,6 +104,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		780FDF552C3D571200007148 /* Manrope */ = {
+			isa = PBXGroup;
+			children = (
+				780FDF562C3D572300007148 /* Manrope-Bold.ttf */,
+				780FDF5B2C3D572300007148 /* Manrope-ExtraBold.ttf */,
+				780FDF582C3D572300007148 /* Manrope-ExtraLight.ttf */,
+				780FDF572C3D572300007148 /* Manrope-Light.ttf */,
+				780FDF5C2C3D572300007148 /* Manrope-Medium.ttf */,
+				780FDF592C3D572300007148 /* Manrope-Regular.ttf */,
+				780FDF5A2C3D572300007148 /* Manrope-SemiBold.ttf */,
+			);
+			path = Manrope;
+			sourceTree = "<group>";
+		};
 		781C7A922C32DDEE00D2A2FA /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +180,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		781C7AC42C3D4DC000D2A2FA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				780FDF552C3D571200007148 /* Manrope */,
+			);
+			name = Fonts;
+			path = ../Fonts;
+			sourceTree = "<group>";
+		};
 		78EF0F472C0DEE9800B05BFB = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +212,7 @@
 		78EF0F522C0DEE9800B05BFB /* FlightRadar */ = {
 			isa = PBXGroup;
 			children = (
+				781C7AC42C3D4DC000D2A2FA /* Fonts */,
 				781C7ABD2C3BE65D00D2A2FA /* Extensions */,
 				781C7AC32C3C13B100D2A2FA /* Services */,
 				781C7AAC2C36998300D2A2FA /* State */,
@@ -189,6 +222,7 @@
 				78EF0F552C0DEE9800B05BFB /* ContentView.swift */,
 				78EF0F572C0DEE9900B05BFB /* Assets.xcassets */,
 				78EF0F592C0DEE9900B05BFB /* Preview Content */,
+				780FDF3C2C3D541500007148 /* info.plist */,
 			);
 			path = FlightRadar;
 			sourceTree = "<group>";
@@ -328,6 +362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780FDF3D2C3D541500007148 /* info.plist in Resources */,
 				78EF0F5B2C0DEE9900B05BFB /* Preview Assets.xcassets in Resources */,
 				78EF0F582C0DEE9900B05BFB /* Assets.xcassets in Resources */,
 			);

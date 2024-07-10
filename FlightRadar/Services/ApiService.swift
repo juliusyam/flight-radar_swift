@@ -30,7 +30,38 @@ class ApiService: ObservableObject {
         return try await request(path: "/register", method: .post, payload: payload)
     }
     
-    private func request<T: Codable, U: Codable>(path: String, method: ApiMethod, payload: T?) async throws -> U {
+    func addFlight(payload: FlightPayload) async throws -> Flight {
+        return try await request(path: "/flights", method: .post, payload: payload)
+    }
+    
+    func getFlight(id: Int) async throws -> Flight {
+        return try await request(path: "/flights/\(id)", method: .get)
+    }
+    
+    func getFlights(params: FlightQueryParams?) async throws -> [Flight] {
+        var endpoint = "/flights"
+        
+        if let params = params {
+            var queryItems: [URLQueryItem] = []
+            
+            if let airline = params.airline {
+                queryItems.append(URLQueryItem(name: "airline", value: airline))
+            }
+            
+            if let airport = params.airport {
+                queryItems.append(URLQueryItem(name: "airport", value: airport))
+            }
+            
+            if !queryItems.isEmpty {
+                endpoint += "?" + queryItems.map { "\($0.name)=\($0.value ?? "")" }.joined(separator: "&")
+            }
+        }
+        
+        return try await request(path: endpoint, method: .get)
+    }
+
+    
+    private func request<T: Codable, U: Codable>(path: String, method: ApiMethod, payload: T = EmptyPayload()) async throws -> U {
         guard var components = URLComponents(string: "http://\(host)") else {
             throw APIError.invalidUrl()
         }
@@ -44,7 +75,7 @@ class ApiService: ObservableObject {
         urlRequest.httpMethod = method.rawValue
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        if let payload = payload, method != .get {
+        if method != .get {
             let bodyData = try encoder.encode(payload)
             urlRequest.httpBody = bodyData
         }
