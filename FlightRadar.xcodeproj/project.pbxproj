@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		780FDF3D2C3D541500007148 /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 780FDF3C2C3D541500007148 /* info.plist */; };
+		780FDF622C3EA66700007148 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780FDF612C3EA66700007148 /* SettingsView.swift */; };
+		780FDF642C3EA96B00007148 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780FDF632C3EA96B00007148 /* View.swift */; };
+		780FDF672C3EB33300007148 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 780FDF662C3EB33300007148 /* Localizable.xcstrings */; };
+		780FDF692C3EBAF600007148 /* FlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780FDF682C3EBAF600007148 /* FlightsView.swift */; };
+		780FDF6C2C3EBCB300007148 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780FDF6B2C3EBCB300007148 /* SearchView.swift */; };
 		781C7A952C32DE4300D2A2FA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C7A942C32DE4300D2A2FA /* LoginView.swift */; };
 		781C7A972C32DE7E00D2A2FA /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C7A962C32DE7E00D2A2FA /* RegistrationView.swift */; };
 		781C7AA52C354C5D00D2A2FA /* Payloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C7AA42C354C5D00D2A2FA /* Payloads.swift */; };
@@ -20,6 +25,9 @@
 		781C7AB92C383C3900D2A2FA /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 781C7AB82C383C3900D2A2FA /* KeychainSwift */; };
 		781C7ABC2C3840A600D2A2FA /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C7ABB2C3840A600D2A2FA /* DashboardView.swift */; };
 		781C7ABF2C3BE69C00D2A2FA /* ViewStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C7ABE2C3BE69C00D2A2FA /* ViewStyling.swift */; };
+		784492192C3EEA3F00C7F069 /* FRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784492182C3EEA3F00C7F069 /* FRButton.swift */; };
+		78DD2FF92C3ECA7800583333 /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DD2FF82C3ECA7800583333 /* RoundedCornerView.swift */; };
+		78DD2FFB2C3ECB2600583333 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DD2FFA2C3ECB2600583333 /* DropDownView.swift */; };
 		78EF0F542C0DEE9800B05BFB /* FlightRadarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0F532C0DEE9800B05BFB /* FlightRadarApp.swift */; };
 		78EF0F562C0DEE9800B05BFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF0F552C0DEE9800B05BFB /* ContentView.swift */; };
 		78EF0F582C0DEE9900B05BFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78EF0F572C0DEE9900B05BFB /* Assets.xcassets */; };
@@ -55,6 +63,11 @@
 		780FDF5A2C3D572300007148 /* Manrope-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-SemiBold.ttf"; sourceTree = "<group>"; };
 		780FDF5B2C3D572300007148 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
 		780FDF5C2C3D572300007148 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-Medium.ttf"; sourceTree = "<group>"; };
+		780FDF612C3EA66700007148 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		780FDF632C3EA96B00007148 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		780FDF662C3EB33300007148 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		780FDF682C3EBAF600007148 /* FlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsView.swift; sourceTree = "<group>"; };
+		780FDF6B2C3EBCB300007148 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		781C7A942C32DE4300D2A2FA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		781C7A962C32DE7E00D2A2FA /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		781C7AA42C354C5D00D2A2FA /* Payloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payloads.swift; sourceTree = "<group>"; };
@@ -66,6 +79,9 @@
 		781C7AB32C36BDFB00D2A2FA /* StringValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringValidators.swift; sourceTree = "<group>"; };
 		781C7ABB2C3840A600D2A2FA /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		781C7ABE2C3BE69C00D2A2FA /* ViewStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyling.swift; sourceTree = "<group>"; };
+		784492182C3EEA3F00C7F069 /* FRButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRButton.swift; sourceTree = "<group>"; };
+		78DD2FF82C3ECA7800583333 /* RoundedCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerView.swift; sourceTree = "<group>"; };
+		78DD2FFA2C3ECB2600583333 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		78EF0F502C0DEE9800B05BFB /* FlightRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78EF0F532C0DEE9800B05BFB /* FlightRadarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightRadarApp.swift; sourceTree = "<group>"; };
 		78EF0F552C0DEE9800B05BFB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,12 +134,32 @@
 			path = Manrope;
 			sourceTree = "<group>";
 		};
+		780FDF652C3EB31500007148 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				780FDF662C3EB33300007148 /* Localizable.xcstrings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		780FDF6A2C3EBC9900007148 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				780FDF6B2C3EBCB300007148 /* SearchView.swift */,
+				78DD2FF82C3ECA7800583333 /* RoundedCornerView.swift */,
+				78DD2FFA2C3ECB2600583333 /* DropDownView.swift */,
+				784492182C3EEA3F00C7F069 /* FRButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		781C7A922C32DDEE00D2A2FA /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				781C7ABA2C38406600D2A2FA /* Dashboard */,
 				781C7A932C32DE2300D2A2FA /* Auth */,
 				781C7AB02C36A9ED00D2A2FA /* SplashScreen.swift */,
+				78EF0F552C0DEE9800B05BFB /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,6 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				781C7ABB2C3840A600D2A2FA /* DashboardView.swift */,
+				780FDF612C3EA66700007148 /* SettingsView.swift */,
+				780FDF682C3EBAF600007148 /* FlightsView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -168,6 +206,7 @@
 			children = (
 				781C7AB32C36BDFB00D2A2FA /* StringValidators.swift */,
 				781C7ABE2C3BE69C00D2A2FA /* ViewStyling.swift */,
+				780FDF632C3EA96B00007148 /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -212,6 +251,8 @@
 		78EF0F522C0DEE9800B05BFB /* FlightRadar */ = {
 			isa = PBXGroup;
 			children = (
+				780FDF6A2C3EBC9900007148 /* Components */,
+				780FDF652C3EB31500007148 /* Localization */,
 				781C7AC42C3D4DC000D2A2FA /* Fonts */,
 				781C7ABD2C3BE65D00D2A2FA /* Extensions */,
 				781C7AC32C3C13B100D2A2FA /* Services */,
@@ -219,7 +260,6 @@
 				781C7AA32C354C4400D2A2FA /* Data */,
 				781C7A922C32DDEE00D2A2FA /* Views */,
 				78EF0F532C0DEE9800B05BFB /* FlightRadarApp.swift */,
-				78EF0F552C0DEE9800B05BFB /* ContentView.swift */,
 				78EF0F572C0DEE9900B05BFB /* Assets.xcassets */,
 				78EF0F592C0DEE9900B05BFB /* Preview Content */,
 				780FDF3C2C3D541500007148 /* info.plist */,
@@ -364,6 +404,7 @@
 			files = (
 				780FDF3D2C3D541500007148 /* info.plist in Resources */,
 				78EF0F5B2C0DEE9900B05BFB /* Preview Assets.xcassets in Resources */,
+				780FDF672C3EB33300007148 /* Localizable.xcstrings in Resources */,
 				78EF0F582C0DEE9900B05BFB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,13 +431,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				781C7AB12C36A9ED00D2A2FA /* SplashScreen.swift in Sources */,
+				784492192C3EEA3F00C7F069 /* FRButton.swift in Sources */,
 				781C7ABC2C3840A600D2A2FA /* DashboardView.swift in Sources */,
+				780FDF642C3EA96B00007148 /* View.swift in Sources */,
 				781C7ABF2C3BE69C00D2A2FA /* ViewStyling.swift in Sources */,
 				781C7AAE2C36999B00D2A2FA /* UserState.swift in Sources */,
 				781C7A952C32DE4300D2A2FA /* LoginView.swift in Sources */,
+				780FDF6C2C3EBCB300007148 /* SearchView.swift in Sources */,
 				78EF0F562C0DEE9800B05BFB /* ContentView.swift in Sources */,
 				78EF0F542C0DEE9800B05BFB /* FlightRadarApp.swift in Sources */,
+				780FDF692C3EBAF600007148 /* FlightsView.swift in Sources */,
+				78DD2FFB2C3ECB2600583333 /* DropDownView.swift in Sources */,
+				780FDF622C3EA66700007148 /* SettingsView.swift in Sources */,
 				781C7AA52C354C5D00D2A2FA /* Payloads.swift in Sources */,
+				78DD2FF92C3ECA7800583333 /* RoundedCornerView.swift in Sources */,
 				781C7A972C32DE7E00D2A2FA /* RegistrationView.swift in Sources */,
 				781C7AA92C35522600D2A2FA /* ApiService.swift in Sources */,
 				781C7AAB2C35926100D2A2FA /* Enums.swift in Sources */,
@@ -567,6 +615,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FlightRadar/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Flight radar";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -577,7 +627,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.flightradar.FlightRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -596,6 +646,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FlightRadar/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Flight radar";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -606,7 +658,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.flightradar.FlightRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

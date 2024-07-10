@@ -11,18 +11,25 @@ struct DashboardView: View {
     @EnvironmentObject private var userState: UserState
     
     var body: some View {
-        VStack {
-            Button(action: {
-                Task {
-                 await userState.removeUserAndJWT()
+        ZStack {
+            TabView {
+                NavigationView {
+                  
                 }
-            }) {
-                Text("Logout")
-                    .padding()
-                    .buttonStyle()
+                .tabConfigs("Dashboard", tag: .dashboard, systemImage: "house", identifier: "dashboard")
+                
+                NavigationView {
+                  FlightsView()
+                }
+                .tabConfigs("Flights", tag: .flights, systemImage: "airplane", identifier: "flights")
+                
+                NavigationView {
+                  SettingsView()
+                }
+                .tabConfigs("Settings", tag: .dashboard, systemImage: "gearshape", identifier: "settings")
             }
+            .accentColor(.gold)
         }
-        .padding(.horizontal, 20)
     }
 }
 

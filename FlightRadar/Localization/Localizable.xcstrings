@@ -1,0 +1,57 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Add Flight" : {
+
+    },
+    "Button with icon" : {
+
+    },
+    "Click me" : {
+
+    },
+    "Don't have an account? Register" : {
+
+    },
+    "Email" : {
+
+    },
+    "Fill width" : {
+
+    },
+    "Flight Radar" : {
+
+    },
+    "Login" : {
+
+    },
+    "Logout" : {
+
+    },
+    "My Flights" : {
+
+    },
+    "Name" : {
+
+    },
+    "Password" : {
+
+    },
+    "Register" : {
+
+    },
+    "Registration" : {
+
+    },
+    "Search for your flight" : {
+
+    },
+    "Track flights in real-time" : {
+
+    },
+    "Wrap content" : {
+
+    }
+  },
+  "version" : "1.0"
+}

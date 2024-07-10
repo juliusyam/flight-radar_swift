@@ -20,6 +20,7 @@ struct FlightRadarApp: App {
             ContentView()
                 .environmentObject(apiService)
                 .environmentObject(userState)
+                .font(.customFont())
         }
     }
 }
