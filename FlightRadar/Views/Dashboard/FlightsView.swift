@@ -61,7 +61,7 @@ struct FlightsView: View {
                 }
                 
                 FRButton(action: {
-                    // Add flight action
+                    //TODO: Add flight action
                 }) {
                     Text("Add Flight")
                 }
@@ -73,7 +73,7 @@ struct FlightsView: View {
                     LazyVStack(spacing: 10) {
                         ForEach(flights, id: \.id) { flight in
                             FlightCard(flight: flight) {
-                                // Flight card action
+                                //TODO: Flight card action
                             }
                         }
                     }
