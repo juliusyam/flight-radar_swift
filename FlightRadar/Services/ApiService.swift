@@ -9,17 +9,17 @@ import CoreLocation
 import Foundation
 
 class ApiService: ObservableObject {
-    @Published fileprivate(set) var jwt: String?
+    @Published fileprivate(set) var userState: UserState?
     
     private let host: String = "127.0.0.1:8000"
     private let encoder: JSONEncoder
     private let decoder: JSONDecoder
     
-    init(_ jwt: String?) {
+    init(_ userState: UserState?) {
         encoder = JSONEncoder()
         decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        self.jwt = jwt
+        self.userState = userState
     }
     
     func login(payload: LoginPayload) async throws -> AuthResponse {
@@ -38,7 +38,7 @@ class ApiService: ObservableObject {
         return try await request(path: "/flights/\(id)", method: .get)
     }
     
-    func getFlights(params: FlightQueryParams?) async throws -> [Flight] {
+    func getFlights(params: FlightQueryParams? = nil) async throws -> [Flight] {
         var endpoint = "/flights"
         
         if let params = params {
@@ -80,7 +80,7 @@ class ApiService: ObservableObject {
             urlRequest.httpBody = bodyData
         }
         
-        if let jwt = jwt {
+        if let jwt = userState?.jwt {
             urlRequest.setValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
         }
         
@@ -94,6 +94,10 @@ class ApiService: ObservableObject {
             let statusCode = httpResponse.statusCode
             
             switch statusCode {
+            case 400:
+                let newToken: RefreshToken = try await request(path: "/refresh", method: .get)
+                userState?.jwt = newToken.token
+                return try await request(path: path, method: method, payload: payload)
             case 401:
                 let errorMessage = try? decoder.decode(ErrorResponse.self, from: json).message
                 throw APIError.unAuthorised(message: errorMessage)

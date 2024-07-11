@@ -44,3 +44,10 @@ enum APIError: Error {
         }
     }
 }
+
+enum FlightOption: String, CaseIterable {
+    case all = "all"
+    case airplane = "airplane"
+    case airport = "airport"
+}
+

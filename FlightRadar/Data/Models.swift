@@ -39,3 +39,7 @@ struct Flight: Codable {
     let createdAt: String
     let updatedAt: String
 }
+
+struct RefreshToken: Codable {
+    let token: String
+}

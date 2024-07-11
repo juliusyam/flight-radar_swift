@@ -30,7 +30,6 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             SettingsView()
-                .environmentObject(ApiService(nil))
                 .environmentObject(UserState())
         }
     }

@@ -7,64 +7,40 @@
 
 import SwiftUI
 
-struct DropDownView: View {
-    let options: [String]
-    @State private var isExpanded = false
-    @Binding var selected: String
+struct DropDownView<T: RawRepresentable & CaseIterable>: View where T.RawValue == String {
+    @Binding var selected: T
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Text(selected)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.textPrimary)
-                
-                Spacer(minLength: 15)
-                
-                Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                    .resizable()
-                    .frame(width: 12, height: 6)
-            }
-            .onTapGesture {
-                withAnimation {
-                    isExpanded.toggle()
+        Menu {
+            ForEach(Array(T.allCases), id: \.rawValue) { option in
+                Button(action: {
+                    selected = option
+                }) {
+                    Text(option.rawValue)
+                        .fontWeight(option == selected ? .semibold : .regular)
+                        .foregroundColor(.textPrimary)
                 }
             }
-            
-            if isExpanded {
-                ZStack {
-                    VStack(alignment: .leading, spacing: 0) {
-                        ForEach(options, id: \.self) { option in
-                            Text(option)
-                                .fontWeight(option == selected ? .semibold : .regular)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 16)
-                                .foregroundColor(.textPrimary)
-                                .onTapGesture {
-                                    withAnimation {
-                                        selected = option
-                                        isExpanded = false
-                                    }
-                                }
-                        }
-                    }
-                }
-            }
+        } label: {
+            Text(selected.rawValue)
+                .padding(12)
+                .background(Color.cardPrimary)
+                .foregroundColor(.textPrimary)
+                .cornerRadius(corners: [.allCorners])
         }
-        .padding(12)
-        .background(.cardPrimary)
-        .cornerRadius(corners: [.allCorners])
-        .fixedSize(horizontal: true, vertical: false)
-        .animation(.easeInOut(duration: 0.3), value: isExpanded)
     }
 }
 
-
 struct DropDownView_Previews: PreviewProvider {
     static var previews: some View {
-        let options = ["Option 1", "Option 2", "Option 3"]
-        @State var selectedOption = "Option 1"
+        PreviewWrapper()
+    }
+    
+    struct PreviewWrapper: View {
+        @State private var selectedOption: FlightOption = .all
         
-        DropDownView(options: options, selected: $selectedOption)
+        var body: some View {
+            DropDownView(selected: $selectedOption)
+        }
     }
 }

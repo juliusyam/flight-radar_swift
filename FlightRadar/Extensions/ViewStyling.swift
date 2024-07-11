@@ -43,25 +43,27 @@ extension View {
     
     func titleStyle(_ color: Color = .white) -> some View {
         self
-            .font(.customFont(size: 40, weight: .bold))
-            .foregroundColor(color)
-            .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+            .textStyle(color, size: 40, weight: .bold)
     }
 
     func subTitleStyle(_ color: Color = .white) -> some View {
         self
-            .font(.customFont(weight: .semibold))
+            .textStyle(color)
+    }
+    
+    func textStyle(_ color: Color = .textPrimary, size: CGFloat = 18, weight: Font.Weight = .regular) -> some View {
+        self
+            .font(.customFont(size: size, weight: .semibold))
             .foregroundColor(color)
-            .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
     }
     
     func cornerRadius(_ radius: CGFloat = 8, corners: UIRectCorner) -> some View {
          clipShape(RoundedCornerView(radius: radius, corners: corners))
      }
     
-    func fillSpacing(padding: CGFloat = 10) -> some View {
+    func fillSpacing(padding: CGFloat = 10, alignment: Alignment = .topLeading) -> some View {
         self.padding(padding)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
     }
     
     func fillHorizontal(padding: CGFloat = 10, alignment: Alignment = .topLeading) -> some View {

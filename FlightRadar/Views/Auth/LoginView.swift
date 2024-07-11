@@ -77,11 +77,7 @@ struct LoginView: View {
                 }
                 
                 if !error.isEmpty {
-                    Text(error)
-                        .foregroundColor(.red)
-                        .padding()
-                        .background(Color.white.opacity(0.8))
-                        .cornerRadius(10)
+                    ErrorView(error: error)
                 }
                 
                 NavigationLink(destination: RegistrationView()) {
