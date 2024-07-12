@@ -18,7 +18,6 @@ struct FRDivider: View {
     var dashRate: CGFloat = .infinity
     var thickness: CGFloat = 1
 
-
     var body: some View {
         GeometryReader { geometry in
             var dashPattern: [CGFloat] = []
