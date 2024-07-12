@@ -34,24 +34,51 @@ extension View {
         //  TODO: To expand this to accommodate a different set of buttons
         self
             .foregroundColor(.white)
-            .font(.system(size: 18, weight: .bold, design: .default))
+            .font(.customFont(weight: .bold))
             .frame(maxWidth: .infinity)
             .background(Color.blue)
             .cornerRadius(10)
             .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
     }
     
-    func titleStyle() -> some View {
+    func titleStyle(_ color: Color = .white) -> some View {
         self
-            .font(.system(size: 40, weight: .bold, design: .default))
-            .foregroundColor(.white)
-            .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+            .textStyle(color, size: 40, weight: .bold)
     }
 
-    func subTitleStyle() -> some View {
+    func subTitleStyle(_ color: Color = .white) -> some View {
         self
-            .font(.system(size: 18, weight: .semibold, design: .default))
-            .foregroundColor(.white)
-            .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+            .textStyle(color)
     }
+    
+    func textStyle(_ color: Color = .textPrimary, size: CGFloat = 18, weight: Font.Weight = .regular) -> some View {
+        self
+            .font(.customFont(size: size, weight: .semibold))
+            .foregroundColor(color)
+    }
+    
+    func cornerRadius(_ radius: CGFloat = 8, corners: UIRectCorner) -> some View {
+         clipShape(RoundedCornerView(radius: radius, corners: corners))
+     }
+    
+    func fillSpacing(padding: CGFloat = 10, alignment: Alignment = .topLeading) -> some View {
+        self.padding(padding)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
+    }
+    
+    func fillHorizontal(padding: CGFloat = 10, alignment: Alignment = .topLeading) -> some View {
+        self.padding(padding)
+            .frame(maxWidth: .infinity, alignment: alignment)
+    }
+    
+    func fillVertical(padding: CGFloat = 10, alignment: Alignment = .topLeading) -> some View {
+        self.padding(padding)
+            .frame(maxHeight: .infinity, alignment: alignment)
+    }
+}
+
+extension Font {
+    static func customFont(size: CGFloat = 18, weight: Font.Weight = .regular) -> Font {
+            return Font.custom("manrope", size: size).weight(weight)
+        }
 }

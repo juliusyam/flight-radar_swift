@@ -10,7 +10,7 @@ import KeychainSwift
 
 class UserState: ObservableObject {
     @Published var jwt: String?
-    @Published var user: UserResponse?
+    @Published var user: User?
     
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
@@ -25,12 +25,12 @@ class UserState: ObservableObject {
         }
         
         if let userData = keychain.getData(userKey),
-           let user = try? decoder.decode(UserResponse.self, from: userData) {
+           let user = try? decoder.decode(User.self, from: userData) {
             self.user = user
         }
     }
     
-    func updateUser(jwt: String, user: UserResponse) async {
+    func updateUser(jwt: String, user: User) async {
         await MainActor.run {
             self.jwt = jwt
             self.user = user

@@ -12,7 +12,7 @@ struct FlightRadarApp: App {
     @StateObject private var userState = UserState()
     
     var apiService: ApiService {
-        ApiService(userState.jwt)
+        ApiService(userState)
     }
     
     var body: some Scene {
@@ -20,6 +20,7 @@ struct FlightRadarApp: App {
             ContentView()
                 .environmentObject(apiService)
                 .environmentObject(userState)
+                .font(.customFont())
         }
     }
 }

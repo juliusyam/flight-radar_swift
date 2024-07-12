@@ -14,6 +14,10 @@ enum ApiMethod: String {
     case delete = "DELETE"
 }
 
+enum FRTab: Equatable {
+  case dashboard, flights, settings
+}
+
 enum APIError: Error {
     case invalidUrl(message: String? = nil)
     case failedResponse(statusCode: Int, message: String? = nil)
@@ -40,3 +44,10 @@ enum APIError: Error {
         }
     }
 }
+
+enum FlightOption: String, CaseIterable {
+    case all = "all"
+    case airplane = "airplane"
+    case airport = "airport"
+}
+

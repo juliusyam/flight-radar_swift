@@ -8,11 +8,11 @@
 import Foundation
 
 struct AuthResponse: Codable, Equatable {
-    let user: UserResponse
+    let user: User
     let token: String
 }
 
-struct UserResponse: Codable, Equatable {
+struct User: Codable, Equatable {
     let name: String
     let email: String
     let updatedAt: String
@@ -25,4 +25,21 @@ struct ErrorResponse: Codable {
     let message: String?
     let errors: [String: [String]]?
     let status: Bool?
+}
+
+struct Flight: Codable {
+    let id: Int
+    let userId: Int
+    let departureDate: String
+    let flightNumber: String
+    let departureAirport: String
+    let arrivalAirport: String
+    let distance: Int
+    let airline: String
+    let createdAt: String
+    let updatedAt: String
+}
+
+struct RefreshToken: Codable {
+    let token: String
 }
