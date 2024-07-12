@@ -23,5 +23,4 @@ extension View {
       navigationViewStyle(StackNavigationViewStyle())
         .navigationBarBackButtonHidden(true)
     }
-    
 }

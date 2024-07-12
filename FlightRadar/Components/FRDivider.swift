@@ -31,13 +31,15 @@ struct FRDivider: View {
                     dashPattern = Array(repeating: dashLength, count: Int(dashRate))
                 }
                 
+                let avgThickness = thickness / 2
+                
                 switch orientation {
                 case .vertical:
-                    path.move(to: CGPoint(x: thickness / 2, y: 0))
-                    path.addLine(to: CGPoint(x: thickness / 2, y: length))
+                    path.move(to: CGPoint(x: avgThickness, y: 0))
+                    path.addLine(to: CGPoint(x: avgThickness, y: length))
                 case .horizontal:
                     path.move(to: CGPoint(x: 0, y: thickness / 2))
-                    path.addLine(to: CGPoint(x: length, y: thickness / 2))
+                    path.addLine(to: CGPoint(x: length, y: avgThickness))
                 }
             }
             .stroke(style: StrokeStyle(lineWidth: thickness, dash: dashPattern))
