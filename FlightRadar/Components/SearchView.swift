@@ -35,7 +35,7 @@ struct SearchView: View {
         .padding(.horizontal, 10)
         .frame(height: 44)
         .background(.cardPrimary)
-        .cornerRadius(corners: [.allCorners])
+        .cornerRadius()
     }
 }
 

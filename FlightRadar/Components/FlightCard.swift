@@ -35,12 +35,11 @@ struct FlightCard: View {
                 Spacer()
                 
                 DoubleTextView(text: flight.departureAirport, subText: flight.departureDate)
-                    .startEnd()
             }
         }
         .fillHorizontal(padding: 10)
         .background(.cardPrimary)
-        .cornerRadius(corners: [.allCorners])
+        .cornerRadius()
         .onTapGesture {
             onClick()
         }

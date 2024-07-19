@@ -26,7 +26,7 @@ extension View {
     func textFieldBackground() -> some View {
         self
             .background(Color.white.opacity(0.8))
-            .cornerRadius(10)
+            .cornerRadius(radius: 10)
             .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
     }
     
@@ -37,7 +37,7 @@ extension View {
             .font(.customFont(weight: .bold))
             .frame(maxWidth: .infinity)
             .background(Color.blue)
-            .cornerRadius(10)
+            .cornerRadius(radius: 10)
             .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
     }
     
@@ -57,7 +57,7 @@ extension View {
             .foregroundColor(color)
     }
     
-    func cornerRadius(_ radius: CGFloat = 8, corners: UIRectCorner) -> some View {
+    func cornerRadius(radius: CGFloat = 8, corners: UIRectCorner = [.allCorners]) -> some View {
          clipShape(RoundedCornerView(radius: radius, corners: corners))
      }
     

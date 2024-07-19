@@ -4,19 +4,19 @@
     "Add Flight" : {
 
     },
-    "Button with icon" : {
-
-    },
-    "Click me" : {
-
-    },
     "Don't have an account? Register" : {
 
     },
     "Email" : {
 
     },
-    "Fill width" : {
+    "Fill width with icon" : {
+
+    },
+    "Fit width" : {
+
+    },
+    "Fixed width (200)" : {
 
     },
     "Flight Radar" : {
@@ -34,6 +34,9 @@
     "Name" : {
 
     },
+    "Other content" : {
+
+    },
     "Password" : {
 
     },
@@ -47,9 +50,6 @@
 
     },
     "Track flights in real-time" : {
-
-    },
-    "Wrap content" : {
 
     }
   },

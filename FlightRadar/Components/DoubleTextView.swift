@@ -10,10 +10,10 @@ import SwiftUI
 struct DoubleTextView: View {
     let text: String
     let subText: String
-    var isLeftAligned: Bool = false
+    var alignment: HorizontalAlignment = .leading
     
     var body: some View {
-        VStack(alignment: isLeftAligned ? .trailing : .leading, spacing: 8) {
+        VStack(alignment: alignment, spacing: 8) {
             TextView(text: text)
             TextView(text: subText)
         }
@@ -24,9 +24,9 @@ struct DoubleTextView: View {
             .textStyle(.textPrimary, size: 14, weight: .semibold)
     }
     
-    func startEnd() -> some View {
+    func align(_ alignment: HorizontalAlignment) -> DoubleTextView {
         var view = self
-        view.isLeftAligned = true
+        view.alignment = alignment
         return view
     }
 }
@@ -37,9 +37,10 @@ struct DoubleTextView_Previews: PreviewProvider {
             DoubleTextView(text: "Hello", subText: "world plus any other worlds")
             
             DoubleTextView(text: "Hello", subText: "world plus any other worlds")
-                .startEnd()
+                .align(.trailing)
             
+            DoubleTextView(text: "Hello", subText: "world plus any other worlds")
+                .align(.center)
         }
     }
 }
-

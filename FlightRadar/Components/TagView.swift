@@ -15,7 +15,7 @@ struct TagView: View {
             .textStyle(size: 16, weight: .semibold)
             .padding(18)
             .background(Color.cardSecondary)
-            .cornerRadius(corners: [.allCorners])
+            .cornerRadius()
     }
 }
 

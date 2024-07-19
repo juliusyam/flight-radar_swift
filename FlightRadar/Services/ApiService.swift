@@ -38,6 +38,7 @@ class ApiService: ObservableObject {
         return try await request(path: "/flights/\(id)", method: .get)
     }
     
+    
     func getFlights(params: FlightQueryParams? = nil) async throws -> [Flight] {
         var endpoint = "/flights"
         
@@ -59,14 +60,13 @@ class ApiService: ObservableObject {
         
         return try await request(path: endpoint, method: .get)
     }
-
     
-    private func request<T: Codable, U: Codable>(path: String, method: ApiMethod, payload: T = EmptyPayload()) async throws -> U {
+    private func createURLRequest<T: Codable>(path: String, method: ApiMethod, payload: T = EmptyPayload()) throws -> URLRequest {
         guard var components = URLComponents(string: "http://\(host)") else {
             throw APIError.invalidUrl()
         }
         components.path = "/api\(path)"
-                
+        
         guard let url = components.url else {
             throw APIError.invalidUrl()
         }
@@ -84,44 +84,82 @@ class ApiService: ObservableObject {
             urlRequest.setValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
         }
         
+        return urlRequest
+    }
+    
+    private func handleResponse<U: Codable>(json: Data, response: URLResponse) async throws -> U {
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw APIError.invalidResponse(message: "Incorrect response format")
+        }
+        
+        let statusCode = httpResponse.statusCode
+        
+        switch statusCode {
+        case 401:
+            await userState?.removeUserAndJWT()
+            throw APIError.unauthorized(message: "Token expired")
+        case 403:
+            let errorMessage = try? decoder.decode(ErrorResponse.self, from: json).message
+            throw APIError.forbidden(message: errorMessage ?? "Access forbidden")
+        case 422:
+            let errorResponse = try? decoder.decode(ErrorResponse.self, from: json)
+            if let errors = errorResponse?.errors {
+                throw APIError.validationErrors(errors: errors, message: errorResponse?.message)
+            } else {
+                throw APIError.failedResponse(statusCode: statusCode, message: errorResponse?.message)
+            }
+        case 200..<300:
+            return try decoder.decode(U.self, from: json)
+        default:
+            let errorMessage = try? decoder.decode(ErrorResponse.self, from: json).message
+            throw APIError.failedResponse(statusCode: statusCode, message: errorMessage)
+        }
+    }
+
+    private func refreshToken() async throws -> RefreshToken {
+        let urlRequest = try createURLRequest(path: "/refresh", method: .get)
+        
         do {
             let (json, response) = try await URLSession.shared.data(for: urlRequest)
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
-                throw APIError.invalidResponse(message: "Incorrect response format")
-            }
-            
-            let statusCode = httpResponse.statusCode
-            
-            switch statusCode {
-            case 400:
-                let newToken: RefreshToken = try await request(path: "/refresh", method: .get)
-                userState?.jwt = newToken.token
-                return try await request(path: path, method: method, payload: payload)
-            case 401:
-                let errorMessage = try? decoder.decode(ErrorResponse.self, from: json).message
-                throw APIError.unAuthorised(message: errorMessage)
-            case 422:
-                let errorResponse = try? decoder.decode(ErrorResponse.self, from: json)
-                if let errors = errorResponse?.errors {
-                    throw APIError.validationErrors(errors: errors, message: errorResponse?.message)
-                } else {
-                    throw APIError.failedResponse(statusCode: statusCode, message: errorResponse?.message)
-                }
-            case 200..<300:
-                let decodedData = try decoder.decode(U.self, from: json)
-                return decodedData
-            default:
-                let errorMessage = try? decoder.decode(ErrorResponse.self, from: json).message
-                throw APIError.failedResponse(statusCode: statusCode, message: errorMessage)
-            }
+            return try await handleResponse(json: json, response: response)
         } catch {
             if let apiError = error as? APIError {
-                throw apiError
+                switch apiError {
+                case .unauthorized, .forbidden:
+                    await userState?.removeUserAndJWT()
+                    throw APIError.loginRequired()
+                default:
+                    throw apiError
+                }
+            } else {
+                throw APIError.unknown(error)
+            }
+        }
+    }
+
+    private func request<T: Codable, U: Codable>(path: String, method: ApiMethod, payload: T = EmptyPayload()) async throws -> U {
+        let urlRequest = try createURLRequest(path: path, method: method, payload: payload)
+        
+        do {
+            let (json, response) = try await URLSession.shared.data(for: urlRequest)
+            return try await handleResponse(json: json, response: response)
+        } catch {
+            if let apiError = error as? APIError {
+                switch apiError {
+                case .forbidden:
+                    do {
+                        let newToken: RefreshToken = try await refreshToken()
+                        await userState?.updateJWT(jwt: newToken.token)
+                        return try await request(path: path, method: method, payload: payload)
+                    } catch {
+                        throw error
+                    }
+                default:
+                    throw apiError
+                }
             } else {
                 throw APIError.unknown(error)
             }
         }
     }
 }
-

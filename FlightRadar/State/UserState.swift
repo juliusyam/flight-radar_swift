@@ -30,7 +30,17 @@ class UserState: ObservableObject {
         }
     }
     
-    func updateUser(jwt: String, user: User) async {
+    func updateUser(user: User) async {
+        await MainActor.run {
+            self.user = user
+            
+            if let userData = try? encoder.encode(user) {
+                keychain.set(userData, forKey: userKey)
+            }
+        }
+    }
+    
+    func updateUserAndJwt(jwt: String, user: User) async {
         await MainActor.run {
             self.jwt = jwt
             self.user = user

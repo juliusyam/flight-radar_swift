@@ -28,7 +28,7 @@ struct LoginView: View {
             isLoading = true
             
             let result = try await apiService.login(payload: LoginPayload(email: email.lowercased().trimmingCharacters(in: .whitespaces), password: password))
-            await userState.updateUser(jwt: result.token, user: result.user)
+            await userState.updateUserAndJwt(jwt: result.token, user: result.user)
         } catch let error as APIError {
             self.error = error.errorMessage
         } catch {

@@ -26,7 +26,7 @@ struct DropDownView<T: RawRepresentable & CaseIterable>: View where T.RawValue =
                 .padding(12)
                 .background(Color.cardPrimary)
                 .foregroundColor(.textPrimary)
-                .cornerRadius(corners: [.allCorners])
+                .cornerRadius()
         }
     }
 }

@@ -26,6 +26,7 @@ struct FlightsView: View {
         }
     }
     
+    @MainActor
     private func fetchFlights() {
         Task {
             defer {
@@ -62,12 +63,10 @@ struct FlightsView: View {
                 
                 FRButton(action: {
                     //TODO: Add flight action
-                }) {
+                }, icon: Image(systemName: "plus")) {
                     Text("Add Flight")
                 }
-                .icon(Image(systemName: "plus"))
-                .padding(12)
-                .cornerRadius(corners: [.allCorners])
+                .cornerRadius()
                 
                 if !flights.isEmpty {
                     LazyVStack(spacing: 10) {
