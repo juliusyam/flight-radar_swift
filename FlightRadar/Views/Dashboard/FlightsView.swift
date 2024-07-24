@@ -46,58 +46,53 @@ struct FlightsView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                Text("My Flights")
-                    .titleStyle(.textPrimary)
-                    .fillHorizontal(padding: 0, alignment: .center)
-                    .padding(.bottom, 50)
-                
-                HStack(alignment: .top) {
-                    SearchView(searchText: .constant(""), searchAction: {})
-                    DropDownView(selected: $selectedOption)
-                }
-                .onChange(of: selectedOption) { _ in
-                    fetchFlights()
-                }
-                
-                FRButton(action: {
-                    //TODO: Add flight action
-                }, icon: Image(systemName: "plus")) {
-                    Text("Add Flight")
-                }
-                .cornerRadius()
-                
-                if !flights.isEmpty {
-                    LazyVStack(spacing: 10) {
-                        ForEach(flights, id: \.id) { flight in
-                            FlightCard(flight: flight) {
-                                //TODO: Flight card action
-                            }
+        ScrollVStack {
+            Text("My Flights")
+                .titleStyle(.textPrimary)
+                .fillHorizontal(padding: 0, alignment: .center)
+                .padding(.bottom, 50)
+            
+            HStack(alignment: .top) {
+                SearchView(searchText: .constant(""), searchAction: {})
+                DropDownView(selected: $selectedOption)
+            }
+            .onChange(of: selectedOption) { _ in
+                fetchFlights()
+            }
+            
+            FRButton("Add Flight", icon: Image(systemName: "plus")) {
+
+            }
+            .cornerRadius()
+            
+            if !flights.isEmpty {
+                LazyVStack(spacing: 10) {
+                    ForEach(flights, id: \.id) { flight in
+                        FlightCard(flight: flight) {
+                            //TODO: Flight card action
                         }
                     }
-                    .padding(.vertical)
                 }
-            }
-            
-            if isLoading {
-                VStack {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                }
-                .fillSpacing(alignment: .center)
-            }
-            
-            if !error.isEmpty {
-                VStack {
-                    ErrorView(error: error)
-                }
+                .padding(.vertical)
             }
         }
-        .fillSpacing()
-        .onAppear(perform: {
-            fetchFlights()
-        })
+        .onAppear() {
+          fetchFlights()
+        }
+        
+        if isLoading {
+            VStack {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+            }
+            .fillSpacing(alignment: .center)
+        }
+        
+        if !error.isEmpty {
+            VStack {
+                ErrorView(error: error)
+            }
+        }
     }
 }
 

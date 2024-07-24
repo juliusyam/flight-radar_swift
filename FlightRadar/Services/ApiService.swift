@@ -97,7 +97,8 @@ class ApiService: ObservableObject {
         switch statusCode {
         case 401:
             await userState?.removeUserAndJWT()
-            throw APIError.unauthorized(message: "Token expired")
+            let errorMessage = try? decoder.decode(ErrorResponse.self, from: json).message
+            throw APIError.unauthorized(message: errorMessage)
         case 403:
             let errorMessage = try? decoder.decode(ErrorResponse.self, from: json).message
             throw APIError.forbidden(message: errorMessage ?? "Access forbidden")

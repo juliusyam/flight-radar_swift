@@ -15,10 +15,12 @@ struct LoginView: View {
     @State var password: String = ""
     @State var isLoading: Bool = false
     @State var error: String = ""
-    @State var disableButton = false
+    @State var isValidEmail = false
+    @State var showEmailError = false
+    @State var showPasswordError = false
     
-    var isButtonDisabled: Bool {
-        return email.isEmpty || password.isEmpty || disableButton
+    var isValidPassword: Bool {
+        !password.isEmpty
     }
     
     @MainActor
@@ -38,58 +40,60 @@ struct LoginView: View {
     }
     
     var body: some View {
-        
-        VStack {
+        ScrollVStack(spacing: 30) {
+            Banner(image: Image(.plane), text: "Flight Radar.", textAlignment: .leading)
+                .cornerRadius()
+            
             Text("Login")
-                .titleStyle()
-                .padding(.bottom, 50)
+                .textStyle(.textSecondary, size: 40, weight: .semibold)
             
             VStack(spacing: 20) {
-                TextField("Email", text: $email)
-                    .padding()
-                    .textFieldBackground()
-                    .keyboardType(.emailAddress)
-                    .textContentType(.emailAddress)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                    .onChange(of: email) { _ in
-                        disableButton = !email.emailIsValid()
-                    }
-                
-                SecureField("Password", text: $password)
-                    .padding()
-                    .textFieldBackground()
-                
-                Button(action: {
-                    Task {
-                        await loginUser()
-                    }
-                }) {
-                    Text("Login")
-                        .padding()
-                        .buttonStyle()
-                }
-                .disabled(isButtonDisabled)
-                
-                if isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                InputWrapper(label: "Email", errorMessage: showEmailError ? "Please provide a properly formatted email" : nil) {
+                    EmailTextField(email: $email, isValid: $isValidEmail)
                 }
                 
-                if !error.isEmpty {
-                    ErrorView(error: error)
+                InputWrapper(label: "Password", errorMessage: showPasswordError ? "Password cannot be empty" : nil) {
+                    PasswordField(password: $password)
                 }
                 
                 NavigationLink(destination: RegistrationView()) {
-                    Text("Don't have an account? Register")
-                        .foregroundColor(.white)
-                        .padding(.top)
+                    Text("Forgot Password?")
+                        .textStyle(.textSecondary, size: 14, weight: .semibold)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                
+                FRButton(
+                    "Login",
+                    width: .fill,
+                    padding: 16,
+                    isLoading: isLoading
+                ) {
+                    showEmailError = !isValidEmail
+                    showPasswordError = !isValidPassword
+                    if (isValidEmail && isValidPassword) {
+                        Task {
+                            await loginUser()
+                        }
+                    }
+                }
+                .cornerRadius()
+                
+                if !error.isEmpty {
+                    ErrorView(error: error, width: .fill)
                 }
             }
-            .padding(.horizontal, 30)
+                        
+            HStack(alignment: .center) {
+                Text("Don't have an account?")
+                    .textStyle(.textSecondary, size: 15, weight: .bold)
+                
+                NavigationLink(destination: RegistrationView()) {
+                    Text("Register Now")
+                        .textStyle(.gold, size: 15, weight: .bold)
+                }
+            }
+            .frame(maxWidth: .infinity)
         }
-        .linearGradientBackground()
-        .navigationBarBackButtonHidden(true)
     }
 }
 

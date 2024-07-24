@@ -45,7 +45,7 @@ extension View {
         self
             .textStyle(color, size: 40, weight: .bold)
     }
-
+    
     func subTitleStyle(_ color: Color = .white) -> some View {
         self
             .textStyle(color)
@@ -58,8 +58,8 @@ extension View {
     }
     
     func cornerRadius(radius: CGFloat = 8, corners: UIRectCorner = [.allCorners]) -> some View {
-         clipShape(RoundedCornerView(radius: radius, corners: corners))
-     }
+        clipShape(RoundedCornerView(radius: radius, corners: corners))
+    }
     
     func fillSpacing(padding: CGFloat = 10, alignment: Alignment = .topLeading) -> some View {
         self.padding(padding)
@@ -75,10 +75,27 @@ extension View {
         self.padding(padding)
             .frame(maxHeight: .infinity, alignment: alignment)
     }
+    
+    func frTextFieldStyle() -> some View {
+        self.modifier(
+            FRTextFieldStyle()
+        )
+    }
+}
+
+private struct FRTextFieldStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(.vertical, 15)
+            .padding(.horizontal, 10)
+            .frame(maxWidth: .infinity, minHeight: 49)
+            .background(.cardPrimary)
+            .cornerRadius(8)
+    }
 }
 
 extension Font {
     static func customFont(size: CGFloat = 18, weight: Font.Weight = .regular) -> Font {
-            return Font.custom("manrope", size: size).weight(weight)
-        }
+        return Font.custom("manrope", size: size).weight(weight)
+    }
 }

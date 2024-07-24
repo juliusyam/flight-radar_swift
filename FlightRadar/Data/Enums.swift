@@ -66,3 +66,11 @@ enum ButtonWidth {
     case fixed(CGFloat)
 }
 
+enum ErrorViewWidth {
+    case fit
+    case fill
+}
+
+enum IconPosition {
+    case left, right
+}

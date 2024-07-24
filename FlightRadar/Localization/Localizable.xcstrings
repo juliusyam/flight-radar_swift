@@ -1,25 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Add Flight" : {
+    "Cancel" : {
 
     },
-    "Don't have an account? Register" : {
-
-    },
-    "Email" : {
-
-    },
-    "Fill width with icon" : {
-
-    },
-    "Fit width" : {
-
-    },
-    "Fixed width (200)" : {
+    "Don't have an account?" : {
 
     },
     "Flight Radar" : {
+
+    },
+    "Forgot Password?" : {
 
     },
     "Login" : {
@@ -31,19 +22,10 @@
     "My Flights" : {
 
     },
-    "Name" : {
-
-    },
-    "Other content" : {
-
-    },
-    "Password" : {
-
-    },
     "Register" : {
 
     },
-    "Registration" : {
+    "Register Now" : {
 
     },
     "Search for your flight" : {

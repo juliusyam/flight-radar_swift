@@ -15,12 +15,15 @@ struct RegistrationView: View {
     @State var name: String = ""
     @State var email: String = ""
     @State var password: String = ""
+    @State var confirmPassword: String = ""
     @State var isLoading: Bool = false
     @State var error: String = ""
-    @State var disableButton = false
+    @State var isValidEmail = false
+    @State var showEmailError = false
+    @State var showPasswordError = false
     
-    var isButtonDisabled: Bool {
-        return name.isEmpty || email.isEmpty || password.isEmpty || disableButton
+    var passwordMismatch: Bool {
+        !password.isEmpty && !confirmPassword.isEmpty && password != confirmPassword
     }
     
     @MainActor
@@ -40,55 +43,61 @@ struct RegistrationView: View {
     }
     
     var body: some View {
-        
-        VStack {
-            Text("Registration")
-                .titleStyle()
-                .padding(.bottom, 50)
+        ScrollVStack(spacing: 20) {
+            Text("Register")
+                .textStyle(.textSecondary, size: 40, weight: .semibold)
             
-            VStack(spacing: 20) {
-                TextField("Name", text: $name)
-                    .padding()
-                    .textFieldBackground()
-                
-                TextField("Email", text: $email)
-                    .padding()
-                    .textFieldBackground()
-                    .keyboardType(.emailAddress)
-                    .textContentType(.emailAddress)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                    .onChange(of: email) { _ in
-                        disableButton = !email.emailIsValid()
-                    }
-                
-                SecureField("Password", text: $password)
-                    .padding()
-                    .textFieldBackground()
-                
-                Button(action: {
-                    Task {
-                        await registerUser()
-                    }
-                }) {
-                    Text("Register")
-                        .padding()
-                        .buttonStyle()
-                }
-                .disabled(isButtonDisabled)
-                
-                if isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+            VStack(spacing: 30) {
+                InputWrapper(label: "Email", errorMessage: showEmailError ? "Please provide a properly formatted email" : nil) {
+                    EmailTextField(email: $email, isValid: $isValidEmail)
                 }
                 
-                if !error.isEmpty {
-                    ErrorView(error: error)
+                InputWrapper(label: "Name") {
+                    FRTextField(
+                        text: $name,
+                        placeholder: "e.g John Doe"
+                    )
+                }
+                
+                InputWrapper(label: "Password", errorMessage: showPasswordError ? "Password must be at least 8 characters long, contain a number and an uppercase letter" : nil) {
+                    PasswordField(password: $password)
+                }
+                
+                InputWrapper(label: "Confirm Password", errorMessage: passwordMismatch ? "Passwords do not match" : nil) {
+                    PasswordField(password: $confirmPassword)
                 }
             }
-            .padding(.horizontal, 30)
+            
+            if !error.isEmpty {
+                ErrorView(error: error, width: .fill)
+            }
         }
-        .linearGradientBackground()
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button("Cancel") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .foregroundColor(.textPrimary)
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                FRButton(
+                    "Register",
+                    width: .fit,
+                    padding: 12,
+                    isLoading: isLoading
+                ) {
+                    showEmailError = !isValidEmail
+                    showPasswordError = !password.isValidPassword
+                    if (isValidEmail && password.isValidPassword && !passwordMismatch) {
+                        Task {
+                            await registerUser()
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -7,40 +7,55 @@
 
 import SwiftUI
 
-struct FRButton<Content: View>: View {
+struct FRButton: View {
+    private let text: String
     private let action: () -> Void
-    private let textView: () -> Content
     private let color: Color
     private let icon: Image?
     private let width: ButtonWidth
     private let padding: CGFloat
+    private let alignment: HorizontalAlignment
+    private let isLoading: Bool
     
     init(
-        action: @escaping () -> Void,
-        color: Color = .button,
+        _ text: String,
+        color: Color = .buttonPrimary,
         icon: Image? = nil,
         width: ButtonWidth = .fit,
         padding: CGFloat = 10,
-        @ViewBuilder textView: @escaping () -> Content
+        alignment: HorizontalAlignment = .center,
+        isLoading: Bool = false,
+        action: @escaping () -> Void
     ) {
+        self.text = text
         self.action = action
-        self.textView = textView
         self.color = color
         self.icon = icon
         self.width = width
         self.padding = padding
+        self.alignment = alignment
+        self.isLoading = isLoading
     }
     
     var body: some View {
         Button(action: action) {
             HStack {
-                textView()
-                
-                if case .fill = width {
+                if alignment == .trailing {
                     Spacer()
                 }
                 
-                if let icon = icon {
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                } else {
+                    Text(text)
+                }
+                
+                if alignment == .leading {
+                    Spacer()
+                }
+                
+                if let icon = icon, !isLoading {
                     Spacer()
                         .frame(maxWidth: 10)
                     icon
@@ -51,6 +66,7 @@ struct FRButton<Content: View>: View {
             .background(color)
             .foregroundColor(.white)
         }
+        .disabled(isLoading)
     }
     
     private var buttonWidth: CGFloat? {
@@ -68,26 +84,30 @@ struct FRButton<Content: View>: View {
 struct FRButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            FRButton(
-                action: { print("Button tapped") },
-                color: .green,
-                padding: 16
-            ){ Text("Fit width") }
+            FRButton("Normal state",
+                     color: .green,
+                     padding: 16,
+                     alignment: .leading) {
+                print("Button tapped")
+            }
             
-            FRButton(
-                action: { print("Button tapped") },
-                color: .orange,
-                icon: Image(systemName: "star.fill"),
-                width: .fill,
-                padding: 12
-            ){ Text("Fill width with icon") }
+            FRButton("Loading state",
+                     color: .orange,
+                     icon: Image(systemName: "star.fill"),
+                     width: .fill,
+                     padding: 12,
+                     alignment: .center,
+                     isLoading: true) {
+                print("Button tapped")
+            }
             
-            FRButton(
-                action: { print("Button tapped") },
-                color: .purple,
-                width: .fixed(200),
-                padding: 20
-            ){ Text("Fixed width (200)") }
+            FRButton("Normal state",
+                     color: .purple,
+                     width: .fixed(200),
+                     padding: 20,
+                     alignment: .trailing) {
+                print("Button tapped")
+            }
         }
         .padding()
     }

@@ -39,7 +39,7 @@ struct TextIconView: View {
             .aspectRatio(contentMode: .fit)
             .frame(width: 21, height: 21)
             .rotationEffect(iconRotation)
-            .foregroundColor(.button)
+            .foregroundColor(.buttonPrimary)
     }
     
     func iconRotation(_ angle: Angle) -> Self {
