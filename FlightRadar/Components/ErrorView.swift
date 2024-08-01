@@ -55,11 +55,9 @@ struct ErrorView: View {
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 20) {
-            ErrorView(error: "This is a fit error message", icon: Image(systemName: "exclamationmark.triangle"))
+            ErrorView(error: "this is a fit error message", icon: Image(systemName: "exclamationmark.triangle"))
             
-            ErrorView(error: "This is a fill error message", icon: Image(systemName: "exclamationmark.triangle"), width: .fill)
-            
-            ErrorView(error: "This is a long error message that will wrap to multiple lines when it exceeds the available width", icon: Image(systemName: "exclamationmark.triangle"), width: .fill)
+            ErrorView(error: "this is a fill error message", icon: Image(systemName: "exclamationmark.triangle"), width: .fill)
         }
         .padding()
         .previewLayout(.sizeThatFits)

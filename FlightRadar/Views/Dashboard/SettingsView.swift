@@ -17,7 +17,7 @@ struct SettingsView: View {
                  await userState.removeUserAndJWT()
                 }
             }) {
-                Text("Logout")
+                Text("button_logout".localized())
                     .padding()
                     .buttonStyle()
             }

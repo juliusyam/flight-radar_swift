@@ -70,14 +70,14 @@ struct FRTextComponents_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 20) {
             FRTextField(text: .constant(""),
-                        placeholder: "Enter text")
+                        placeholder: "enter text")
             
             FRTextField(text: .constant(""),
-                        placeholder: "With left icon",
+                        placeholder: "with left icon",
                         icon: Image(systemName: "magnifyingglass"))
             
             FRTextField(text: .constant(""),
-                        placeholder: "With right icon",
+                        placeholder: "with right icon",
                         icon: Image(systemName: "xmark.circle.fill"),
                         iconPosition: .right)
         }

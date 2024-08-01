@@ -75,6 +75,9 @@ class ApiService: ObservableObject {
         urlRequest.httpMethod = method.rawValue
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        let preferredLanguage = NSLocale.current.languageCode ?? "en"
+        urlRequest.addValue(preferredLanguage, forHTTPHeaderField: "Accept-Language")
+        
         if method != .get {
             let bodyData = try encoder.encode(payload)
             urlRequest.httpBody = bodyData
@@ -89,7 +92,7 @@ class ApiService: ObservableObject {
     
     private func handleResponse<U: Codable>(json: Data, response: URLResponse) async throws -> U {
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw APIError.invalidResponse(message: "Incorrect response format")
+            throw APIError.invalidResponse(message: "error_incorrect_response_format".localized())
         }
         
         let statusCode = httpResponse.statusCode
@@ -101,7 +104,7 @@ class ApiService: ObservableObject {
             throw APIError.unauthorized(message: errorMessage)
         case 403:
             let errorMessage = try? decoder.decode(ErrorResponse.self, from: json).message
-            throw APIError.forbidden(message: errorMessage ?? "Access forbidden")
+            throw APIError.forbidden(message: errorMessage ?? "error_access_forbidden".localized())
         case 422:
             let errorResponse = try? decoder.decode(ErrorResponse.self, from: json)
             if let errors = errorResponse?.errors {

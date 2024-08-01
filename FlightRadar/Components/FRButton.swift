@@ -84,21 +84,21 @@ struct FRButton: View {
 struct FRButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            FRButton("Normal state",
+            FRButton("normal state",
                      color: .green,
                      padding: 16,
                      alignment: .leading) {
-                print("Button tapped")
+                print("button tapped")
             }
             
-            FRButton("Loading state",
+            FRButton("loading state",
                      color: .orange,
                      icon: Image(systemName: "star.fill"),
                      width: .fill,
                      padding: 12,
                      alignment: .center,
                      isLoading: true) {
-                print("Button tapped")
+                print("button tapped")
             }
             
             FRButton("Normal state",
@@ -106,7 +106,7 @@ struct FRButton_Previews: PreviewProvider {
                      width: .fixed(200),
                      padding: 20,
                      alignment: .trailing) {
-                print("Button tapped")
+                print("button tapped")
             }
         }
         .padding()

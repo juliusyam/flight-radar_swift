@@ -15,7 +15,7 @@ struct PasswordField: View {
         FRSecureField(
             text: $password,
             isValid: $isPasswordValid,
-            placeholder: "Enter your password",
+            placeholder: "label_enter_your_password".localized(),
             onValidate: { input in
                 return !input.isEmpty
             }

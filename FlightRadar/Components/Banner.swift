@@ -54,27 +54,27 @@ struct Banner_Previews: PreviewProvider {
         VStack(spacing: 20) {
             Banner(
                 image: Image("exampleImage"),
-                text: "Default (Full Width)",
+                text: "default",
                 textAlignment: .topLeading
             )
             
             Banner(
                 image: Image("exampleImage"),
-                text: "Custom Size",
+                text: "custom size",
                 width: 300,
                 height: 150
             )
             
             Banner(
                 image: Image("exampleImage"),
-                text: "Custom Width",
+                text: "custom width",
                 textAlignment: .bottomTrailing,
                 width: 250
             )
             
             Banner(
                 image: Image("exampleImage"),
-                text: "Custom Height",
+                text: "custom height",
                 height: 100
             )
         }

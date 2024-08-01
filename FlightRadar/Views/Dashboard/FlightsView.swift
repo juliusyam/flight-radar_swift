@@ -47,7 +47,7 @@ struct FlightsView: View {
     
     var body: some View {
         ScrollVStack {
-            Text("My Flights")
+            Text("label_my_flights")
                 .titleStyle(.textPrimary)
                 .fillHorizontal(padding: 0, alignment: .center)
                 .padding(.bottom, 50)
@@ -60,7 +60,7 @@ struct FlightsView: View {
                 fetchFlights()
             }
             
-            FRButton("Add Flight", icon: Image(systemName: "plus")) {
+            FRButton("button_add_flight".localized(), icon: Image(systemName: "plus")) {
 
             }
             .cornerRadius()

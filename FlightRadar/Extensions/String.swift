@@ -18,4 +18,8 @@ extension String {
         let passwordRegex = "^(?=.*[A-Z])(?=.*\\d).{8,}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: self)
     }
+    
+    func localized(_ arguments: CVarArg..., comment: String = "") -> String {
+      String.localizedStringWithFormat(NSLocalizedString(self, comment: comment), arguments)
+    }
 }

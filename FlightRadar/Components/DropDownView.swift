@@ -16,7 +16,7 @@ struct DropDownView<T: RawRepresentable & CaseIterable>: View where T.RawValue =
                 Button(action: {
                     selected = option
                 }) {
-                    Text(option.rawValue)
+                    Text(option.rawValue.localized())
                         .fontWeight(option == selected ? .semibold : .regular)
                         .foregroundColor(.textPrimary)
                 }

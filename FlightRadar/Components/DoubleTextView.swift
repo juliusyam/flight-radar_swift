@@ -34,12 +34,12 @@ struct DoubleTextView: View {
 struct DoubleTextView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 50) {
-            DoubleTextView(text: "Hello", subText: "world plus any other worlds")
+            DoubleTextView(text: "Hello", subText: "sub text")
             
-            DoubleTextView(text: "Hello", subText: "world plus any other worlds")
+            DoubleTextView(text: "Hello", subText: "sub text")
                 .align(.trailing)
             
-            DoubleTextView(text: "Hello", subText: "world plus any other worlds")
+            DoubleTextView(text: "Hello", subText: "sub text")
                 .align(.center)
         }
     }

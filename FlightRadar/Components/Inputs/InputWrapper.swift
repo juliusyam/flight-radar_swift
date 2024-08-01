@@ -38,7 +38,7 @@ struct InputWrapper<InputView: View>: View {
 
 struct InputWrapper_Previews: PreviewProvider {
     static var previews: some View {
-        InputWrapper(label: "Text", errorMessage: "error") {
+        InputWrapper(label: "text", errorMessage: "error") {
             PasswordField(password: .constant("password"))
         }
     }

@@ -17,7 +17,7 @@ struct SearchView: View {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.gray)
             
-            TextField("Search for your flight", text: $searchText)
+            TextField("placeholder_search_flight".localized(), text: $searchText)
                 .foregroundColor(.textPrimary)
                 .onSubmit {
                     searchAction()
@@ -44,8 +44,7 @@ struct SearchView_Previews: PreviewProvider {
             SearchView(searchText: .constant(""), searchAction: {})
                 .previewLayout(.sizeThatFits)
                 .padding()
-                .previewDisplayName("Empty Search Box")
-        
+                .previewDisplayName("empty_search_box")
     }
 }
 

@@ -16,17 +16,17 @@ struct DashboardView: View {
                 NavigationView {
                   
                 }
-                .tabConfigs("Dashboard", tag: .dashboard, systemImage: "house", identifier: "dashboard")
+                .tabConfigs("button_dashboard".localized(), tag: .dashboard, systemImage: "house", identifier: "dashboard")
                 
                 NavigationView {
                   FlightsView()
                 }
-                .tabConfigs("Flights", tag: .flights, systemImage: "airplane", identifier: "flights")
+                .tabConfigs("button_flights".localized(), tag: .flights, systemImage: "airplane", identifier: "flights")
                 
                 NavigationView {
                   SettingsView()
                 }
-                .tabConfigs("Settings", tag: .dashboard, systemImage: "gearshape", identifier: "settings")
+                .tabConfigs("button_settings".localized(), tag: .dashboard, systemImage: "gearshape", identifier: "settings")
             }
             .accentColor(.gold)
         }

@@ -44,26 +44,26 @@ struct RegistrationView: View {
     
     var body: some View {
         ScrollVStack(spacing: 20) {
-            Text("Register")
+            Text("label_register".localized())
                 .textStyle(.textSecondary, size: 40, weight: .semibold)
             
             VStack(spacing: 30) {
-                InputWrapper(label: "Email", errorMessage: showEmailError ? "Please provide a properly formatted email" : nil) {
+                InputWrapper(label: "label_email".localized(), errorMessage: showEmailError ? "error_please_provide_a_properly_formatted_email".localized() : nil) {
                     EmailTextField(email: $email, isValid: $isValidEmail)
                 }
                 
-                InputWrapper(label: "Name") {
+                InputWrapper(label: "label_name".localized()) {
                     FRTextField(
                         text: $name,
-                        placeholder: "e.g John Doe"
+                        placeholder: "John Doe"
                     )
                 }
                 
-                InputWrapper(label: "Password", errorMessage: showPasswordError ? "Password must be at least 8 characters long, contain a number and an uppercase letter" : nil) {
+                InputWrapper(label: "label_password".localized(), errorMessage: showPasswordError ? "error_password_must_be_at_least_8_characters_long_contain_a_number_and_an_uppercase_letter".localized() : nil) {
                     PasswordField(password: $password)
                 }
                 
-                InputWrapper(label: "Confirm Password", errorMessage: passwordMismatch ? "Passwords do not match" : nil) {
+                InputWrapper(label: "label_confirm_password".localized(), errorMessage: passwordMismatch ? "error_passwords_do_not_match".localized() : nil) {
                     PasswordField(password: $confirmPassword)
                 }
             }
@@ -75,7 +75,7 @@ struct RegistrationView: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button("Cancel") {
+                Button("button_cancel".localized()) {
                     presentationMode.wrappedValue.dismiss()
                 }
                 .foregroundColor(.textPrimary)
@@ -83,7 +83,7 @@ struct RegistrationView: View {
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 FRButton(
-                    "Register",
+                    "label_register".localized(),
                     width: .fit,
                     padding: 12,
                     isLoading: isLoading

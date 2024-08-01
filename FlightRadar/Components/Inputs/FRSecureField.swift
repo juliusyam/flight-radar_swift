@@ -54,9 +54,9 @@ struct FRSecureField: View {
 struct FRSecureField_Previews: PreviewProvider {
     static var previews: some View {
         FRSecureField(text: .constant(""),
-                      placeholder: "Enter password")
+                      placeholder: "enter password")
         
         FRSecureField(text: .constant(""),
-                      placeholder: "Password with left icon")
+                      placeholder: "password with left icon")
     }
 }

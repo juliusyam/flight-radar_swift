@@ -55,7 +55,6 @@ class UserState: ObservableObject {
     func updateJWT(jwt: String) async {
         await MainActor.run {
             self.jwt = jwt
-            
             keychain.set(jwt, forKey: jwtKey)
         }
     }

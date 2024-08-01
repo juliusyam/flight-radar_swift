@@ -41,29 +41,29 @@ struct LoginView: View {
     
     var body: some View {
         ScrollVStack(spacing: 30) {
-            Banner(image: Image(.plane), text: "Flight Radar.", textAlignment: .leading)
+            Banner(image: Image(.plane), text: "label_flight_radar".localized(), textAlignment: .leading)
                 .cornerRadius()
             
-            Text("Login")
+            Text("button_login".localized())
                 .textStyle(.textSecondary, size: 40, weight: .semibold)
             
             VStack(spacing: 20) {
-                InputWrapper(label: "Email", errorMessage: showEmailError ? "Please provide a properly formatted email" : nil) {
+                InputWrapper(label: "label_email".localized(), errorMessage: showEmailError ? "error_please_provide_a_properly_formatted_email".localized() : nil) {
                     EmailTextField(email: $email, isValid: $isValidEmail)
                 }
                 
-                InputWrapper(label: "Password", errorMessage: showPasswordError ? "Password cannot be empty" : nil) {
+                InputWrapper(label: "label_password".localized(), errorMessage: showPasswordError ? "error_password_cannot_be_empty".localized() : nil) {
                     PasswordField(password: $password)
                 }
                 
                 NavigationLink(destination: RegistrationView()) {
-                    Text("Forgot Password?")
+                    Text("label_forgot_Password?".localized())
                         .textStyle(.textSecondary, size: 14, weight: .semibold)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 
                 FRButton(
-                    "Login",
+                    "button_login".localized(),
                     width: .fill,
                     padding: 16,
                     isLoading: isLoading
@@ -84,11 +84,11 @@ struct LoginView: View {
             }
                         
             HStack(alignment: .center) {
-                Text("Don't have an account?")
+                Text("label_don't_have_an_account?".localized())
                     .textStyle(.textSecondary, size: 15, weight: .bold)
                 
                 NavigationLink(destination: RegistrationView()) {
-                    Text("Register Now")
+                    Text("label_register_now".localized())
                         .textStyle(.gold, size: 15, weight: .bold)
                 }
             }

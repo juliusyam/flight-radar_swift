@@ -58,12 +58,12 @@ struct TextIconView: View {
 struct TextIconView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 20) {
-            TextIconView(icon: Image(systemName: "airplane"), text: "Left Icon")
+            TextIconView(icon: Image(systemName: "airplane"), text: "left icon")
             
-            TextIconView(icon: Image(systemName: "airplane"), text: "Right Icon")
+            TextIconView(icon: Image(systemName: "airplane"), text: "right icon")
                 .iconPosition(.right)
             
-            TextIconView(icon: Image(systemName: "airplane"), text: "Rotated Icon")
+            TextIconView(icon: Image(systemName: "airplane"), text: "rotated icon")
                 .iconRotation(.degrees(45))
         }
     }

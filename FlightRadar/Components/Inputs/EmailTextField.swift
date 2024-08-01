@@ -15,7 +15,7 @@ struct EmailTextField: View {
         FRTextField(
             text: $email,
             isValid: $isValid,
-            placeholder: "Email",
+            placeholder: "label_email".localized(),
             onValidate: { $0.emailIsValid() }
         )
         .keyboardType(.emailAddress)

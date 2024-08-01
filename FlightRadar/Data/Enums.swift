@@ -15,7 +15,7 @@ enum ApiMethod: String {
 }
 
 enum FRTab: Equatable {
-  case dashboard, flights, settings
+    case dashboard, flights, settings
 }
 
 enum APIError: Error {
@@ -34,22 +34,22 @@ enum APIError: Error {
         case .invalidUrl(let message):
             return message ?? localizedDescription
         case .failedResponse(let statusCode, let message):
-            return "\(message ?? "Request failed")\nStatus code: \(statusCode)"
+            return "\(message ??  "error_request_failed".localized())\n\( "status_code".localized()): \(statusCode)"
         case .validationErrors(let errors, let message):
             let errorString = errors.map { "\($0.key): \($0.value.joined(separator: ", "))" }.joined(separator: "\n")
-            return "\(message ?? "Validation errors occurred:")\n\(errorString)"
+            return "\(message ??  "error_validation_errors_occurred".localized())\n\(errorString)"
         case .expiredToken(let message):
-            return message ?? "Token has expired. Please refresh your session."
+            return message ?? "token_expired".localized()
         case .forbidden(let message):
-            return message ?? "Access forbidden. You don't have permission to access this resource."
+            return message ?? "error_access_forbidden_no_permission".localized()
         case .unauthorized(let message):
-            return message ?? "Unauthorized access. Please check your credentials."
+            return message ?? "error_unauthorized_access".localized()
         case .invalidResponse(let message):
             return message ?? localizedDescription
         case .unknown(let underlyingError, let message):
             return message ?? underlyingError.localizedDescription
         case .loginRequired(let message):
-            return message ?? "Login required. Please log in to continue."
+            return message ?? "error_login_required".localized()
         }
     }
 }
